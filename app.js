@@ -41,14 +41,12 @@ function levelUp() {
 }
 
 function checkAns(idx) {
-  
   if (userSqn[idx] === gameSqn[idx]) {
     if (userSqn.length == gameSqn.length) {
       setTimeout(levelUp, 1000);
     }
-  }
-  else {
-    h2.innerHTML = `Game Over!Your Score was <b>${level}.<br> Press any key to restart .`
+  } else {
+    h2.innerHTML = `Game Over!Your Score was <b>${level}.<br> Press any key to restart .`;
     document.querySelector("body").style.backgroundColor = "red";
     setTimeout(function () {
       document.querySelector("body").style.backgroundColor = "white";
@@ -58,11 +56,15 @@ function checkAns(idx) {
 }
 
 function btnPressed() {
-  let btn = this;
-  userFlash(btn);
-  let userColor = btn.getAttribute("id");
-  userSqn.push(userColor);
-  checkAns(userSqn.length-1);
+  if (started == true) {
+    let btn = this;
+    userFlash(btn);
+    let userColor = btn.getAttribute("id");
+    userSqn.push(userColor);
+    checkAns(userSqn.length - 1);
+  } else {
+    h2.innerText = "Press any key to start";
+  }
 }
 
 let allBtns = document.querySelectorAll(".btn");
