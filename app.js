@@ -3,9 +3,10 @@ let userSqn = [];
 
 let started = false;
 let level = 0;
-
+let highest = 0;
 let btns = ["red", "green", "purple", "yellow"];
 let h2 = document.querySelector("h2");
+let h3 = document.querySelector("h3");
 
 document.addEventListener("keypress", function () {
   if (started == false) {
@@ -46,7 +47,9 @@ function checkAns(idx) {
       setTimeout(levelUp, 1000);
     }
   } else {
-    h2.innerHTML = `Game Over!Your Score was <b>${level}.<br> Press any key to restart .`;
+    highest = Math.max(highest, userSqn.length + 1);
+    h3.innerText = `Highest Level: ${highest}`;
+    h2.innerHTML = `Game Over!Your Score was <b>${level-1}.<br> Press any key to restart .`;
     document.querySelector("body").style.backgroundColor = "red";
     setTimeout(function () {
       document.querySelector("body").style.backgroundColor = "white";
